@@ -5,6 +5,8 @@ screen = Screen()
 screen.title("The Classic Pong Game")
 screen.bgcolor("black")
 screen.setup(width=800, height=600)
+# turn off the animation
+screen.tracer(0)
 
 # Create and move a paddle
 right_paddle = Turtle()
@@ -31,10 +33,13 @@ def downwards():
         right_paddle.goto(new_x, new_y)
 
 
+
 screen.listen()
 screen.onkeypress(upwards, "Up")
 screen.onkeypress(downwards, "Down")
 
-
+game_on = True
+while game_on:
+    screen.update()
 
 screen.exitonclick()
