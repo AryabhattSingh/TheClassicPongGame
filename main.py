@@ -20,15 +20,28 @@ ball = Ball()
 screen.tracer(1)
 
 screen.listen()
-screen.onkeypress(right_paddle.upwards, "Up")
+screen.onkey(right_paddle.upwards, "Up")
 screen.onkeypress(right_paddle.downwards, "Down")
 screen.onkeypress(left_paddle.upwards, "w")
 screen.onkeypress(left_paddle.downwards, "s")
 
 game_on = True
 while game_on:
-    time.sleep(0.1)
+    time.sleep(0.05)
     ball.move()
+
+    # detect collision with wall
+    #print(ball.xcor())
+    #print (ball.ycor())
+
+    if ball.ycor() > 270 or ball.ycor() < -270:
+        ball.wall_bounce()
+
+    # detect collision with paddle
+    print(ball.distance(right_paddle))
+    if ball.distance(right_paddle) < 30 or ball.distance(left_paddle) < 30:
+        ball.paddle_bounce()
+
     screen.update()
 
 
